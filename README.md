@@ -16,7 +16,7 @@ jss.on("get", function(client, path)
     print("get path: "..path, node.heap())
     if (path == "/") then
         jss.sendFile(client, "index.html", "text/html")
-    else if (path == "/getstate") then  -- path is alway lowercase
+    elseif (path == "/getstate") then  -- path is alway lowercase
         jss.sendJson(client, { device="button1", state=gpio.read(2) })
     else
         jss.send404(client)

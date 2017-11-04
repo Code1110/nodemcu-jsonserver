@@ -1,3 +1,5 @@
+-- jsonServer.lua: https://github.com/Code1110/nodemcu-jsonserver
+
 local jsonServer = {}
 
 if (sjson == nil) then sjson = cjson end
