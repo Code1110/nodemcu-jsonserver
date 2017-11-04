@@ -1,10 +1,10 @@
 # JsonServer Lua Module for NodeMCU ESP8266
 
 ## Overview
-This module aims to be a lightweight and easy to use http-server to for the ESP8266. If you need a fully fledged http-server, then use [nodemcu-httpserver](https://github.com/marcoskirsch/nodemcu-httpserver). It's original idea was to serve only JSON, but you can send any file with it. `Access-Control-Allow-Origin: *` is enabled, so you can use it in AJAX requests.
+This module aims to be a lightweight and easy to use http-server for the ESP8266. If you need a fully-fledged http-server, then use [nodemcu-httpserver](https://github.com/marcoskirsch/nodemcu-httpserver). It's original idea was to serve only JSON, but it can send any file. `Access-Control-Allow-Origin: *` is enabled, so it can be used in AJAX requests.
 
-## Prequisites
-This module is dependent on the following [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) modules:
+## Prerequisites
+This module was tested with [NodeMCU](https://github.com/nodemcu/nodemcu-firmware) 2.1.0 and is dependent on the following modules:
 - net
 - sjson
 
@@ -16,7 +16,7 @@ jss.on("get", function(client, path)
     print("get path: "..path, node.heap())
     if (path == "/") then
         jss.sendFile(client, "index.html", "text/html")
-    else if (path == "/getstate") then  -- path is alway lowercase!
+    else if (path == "/getstate") then  -- path is alway lowercase
         jss.sendJson(client, { device="button1", state=gpio.read(2) })
     else
         jss.send404(client)
@@ -36,7 +36,7 @@ end)
 ## Events
 ### on(method, callback)
 - `method`: Must be `get` or `post`.
-- `callback`: A function that is called, when a GET or POST occours. The function takes the following arguments:
+- `callback`: A function that is called, when a GET or POST occurs. The function takes the following arguments:
   - `client`: The client that made the request.
   - `path`: The requested path, always lowercase and with a leading slash (eg. `/getdata/2`).
   - `data`: Can only be used with POST. Contains the JSON decoded body of the request.
@@ -57,7 +57,7 @@ getTemperature(function(result) jss.sendJson(client, result) end)  -- can be use
 ```
 
 ### sendFile(client, file, mimetype)
-Sends the provided file to the client. The file is being sent in 1KB chuncks, so larger files can be send.
+Sends the provided file to the client. The file is being sent in 1KB chunks, so larger files can be send.
 - `client`: Client
 - `file`: The file to send.
 - `mimetype`: Common mime types are: `text/plain`, `text/html`, `image/jpeg`, `image/png`.
